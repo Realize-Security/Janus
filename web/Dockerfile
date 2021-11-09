@@ -46,7 +46,8 @@ FROM base AS debug
 COPY /dev-requirements.txt /dev-requirements.txt
 RUN pip install -r /dev-requirements.txt
 USER janus
-ENTRYPOINT [ "python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
+# ENTRYPOINT [ "python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
+ENTRYPOINT [ "python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
 
 
 # TEST BUILD
