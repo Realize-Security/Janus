@@ -35,7 +35,7 @@ services:
       - ./static_data:/vol/static
     env_file:
       - ./.db-variables.dev.env
-      - ./.web-variables.dev.env
+      - ./.web-variables.test.env
     # environment:
     #   - DEBUG_ENV=1
     depends_on:
