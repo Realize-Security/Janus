@@ -43,13 +43,17 @@ RUN chmod +x /app/scripts/run.sh
 # DEBUG BUILD
 FROM base AS debug
 
-# RUN pip install debugpy
 COPY /dev-requirements.txt /dev-requirements.txt
 RUN pip install -r /dev-requirements.txt
 USER janus
-# CMD [ "/app/scripts/run.sh" ]
 ENTRYPOINT [ "python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
 
+
+# TEST BUILD
+FROM base AS test
+
+USER janus
+ENTRYPOINT [ "python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
 
 # PROD BUILD
 FROM base AS prod

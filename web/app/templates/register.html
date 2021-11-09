@@ -1,12 +1,15 @@
 <form method='POST'>
     {{ form.hidden_tag() }}
-    <div class="form-group">
-        {{ form.username.label }} {{ form.username }}
-    </div>
-
+    <br>
+    {{ form.username.label }} {{ form.username }}
+    <br>
     {{ form.email.label }} {{  form.email }}
+    <br>
     {{ form.password_1.label }} {{ form.password_1 }}
+    <br>
     {{ form.password_2.label }} {{ form.password_2 }}
+    <br>
     {{ form.reg_key.label }} {{ form.reg_key }}
+    <br>
     {{ form.submit() }}
 </form>
