@@ -12,9 +12,3 @@ def index():
 @core.route("/static/<path:filename>")
 def staticfiles(filename):
     return send_from_directory(core.config["STATIC_FOLDER"], filename)
-
-
-# @core.route("/static/images/<path:filename>")
-# def imagefiles(filename):
-#     return send_from_directory(core.config["STATIC_FOLDER"] + "/", filename)
-
