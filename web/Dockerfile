@@ -48,7 +48,6 @@ RUN pip install -r /dev-requirements.txt
 USER janus
 ENTRYPOINT [ "python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "-m", "flask", "run", "--host=0.0.0.0"]
 
-
 # DEV BUILD
 FROM base AS dev
 
