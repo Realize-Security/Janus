@@ -22,9 +22,6 @@ logpath = os.path.join(LogConf.LOGPATH, LogConf.LOGFILE )
 handler = logging.FileHandler(logpath)
 logger.addHandler(handler)
 
-Bootstrap(app)
-app.config['BOOTSTRAP_SERVE_LOCAL'] = True
-
 
 db = SQLAlchemy(app)
 db.init_app(app)
