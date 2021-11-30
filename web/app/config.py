@@ -18,6 +18,7 @@ class AppConfig(object):
     DEBUG = os.getenv('FLASK_DEBUG')
     SECRET_KEY = os.getenv('SECRET_KEY')
     LOG_ENABLED = os.getenv('LOG_ENABLED')
+    STATIC_FOLDER = f"{os.getenv('APP_FOLDER')}/static"
 
 
 
