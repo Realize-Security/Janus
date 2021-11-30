@@ -7,7 +7,6 @@ from app.models.reg_key import RegKey
 from app import db
 
 
-
 auth = Blueprint('auth', __name__)
 
 

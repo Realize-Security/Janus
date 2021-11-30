@@ -7,11 +7,6 @@ from app.config import LogConf, AppConfig
 from time import strftime
 import os
 
-if AppConfig.DEBUG:
-    import debugpy
-    debugpy.listen(("0.0.0.0", 5678))
-    debugpy.wait_for_client()
-
 
 app = Flask(__name__, static_url_path='/static')
 app.config.from_object("app.config.AppConfig")
