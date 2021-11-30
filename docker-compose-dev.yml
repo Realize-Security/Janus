@@ -32,6 +32,7 @@ services:
     restart: always
     volumes:
       - static_data:/vol/static
+      - ./web:/app
     env_file:
       - ./.db-variables-dev.env
       - ./.web-variables-dev.env
