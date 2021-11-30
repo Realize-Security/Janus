@@ -54,7 +54,8 @@ ENTRYPOINT [ "python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" 
 FROM base AS dev
 
 USER janus
-ENTRYPOINT [ "python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
+# ENTRYPOINT [ "python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
+ENTRYPOINT [ "python3", "-m", "flask", "run", "--host=0.0.0.0" ]
 
 # PROD BUILD
 FROM base AS prod
