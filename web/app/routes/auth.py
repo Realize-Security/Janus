@@ -60,4 +60,4 @@ def login():
         except Exception as e:
             print(str(e))
 
-    return redirect(url_for("login"))
+    return render_template("login.html", form=form)
