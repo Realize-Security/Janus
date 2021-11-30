@@ -22,7 +22,7 @@ services:
       - nginx_logging:/vol/log/nginx
 
   web:
-    container_name: janus_app
+    container_name: app
     build:
       context: ./web
       dockerfile: Dockerfile
@@ -40,8 +40,8 @@ services:
       - db
 
   db:
+    container_name: db
     image: postgres:alpine3.14
-    container_name: janus_db
     restart: always
     user: postgres
     volumes:
