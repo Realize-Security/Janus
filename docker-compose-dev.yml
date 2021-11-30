@@ -22,7 +22,7 @@ services:
       - nginx_logging:/vol/log/nginx
 
   web:
-    container_name: janus_app
+    container_name: app
     build:
       context: ./web
       dockerfile: Dockerfile
@@ -33,20 +33,20 @@ services:
     volumes:
       - ./static_data:/vol/static
     env_file:
-      - ./.db-variables.dev.env
-      - ./.web-variables.dev.env
+      - ./.db-variables-dev.env
+      - ./.web-variables-dev.env
     depends_on:
       - db
 
   db:
+    container_name: db
     image: postgres:alpine3.14
-    container_name: janus_db
     restart: always
     user: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
-      - ./.db-variables.dev.env
+      - ./.db-variables-dev.env
 
 volumes:
   nginx_logging:

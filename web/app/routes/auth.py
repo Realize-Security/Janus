@@ -25,23 +25,23 @@ def register():
             valid_key = RegKey.query.filter_by(reg_key).first()
             if valid_key.email != email or valid_key is None:
                 flash('Invalid key')
-                redirect(url_for('login'))
+                redirect(url_for('registration'))
         except Exception as e:
             print(str(e))
 
         try:
             if User.query.filter_by(email=email):
-                return render_template("register.html")
+                flash('User already registered')
+                return redirect(url_for("login"))
             else:
                 user = User(username, email, password, reg_key, is_active)
                 db.session.add(user)
                 db.session.commit()
                 flash('Registered successfully')
+                return redirect(url_for('login'))
         except Exception as e:
             print(str(e))
 
-        return redirect(url_for('login'))
-        
     return render_template("register.html", form=form)
 
 

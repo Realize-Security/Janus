@@ -17,6 +17,8 @@ class AppConfig(object):
     TEMPLATES_AUTO_RELOAD = True
     DEBUG = os.getenv('FLASK_DEBUG')
     SECRET_KEY = os.getenv('SECRET_KEY')
+    LOG_ENABLED = os.getenv('LOG_ENABLED')
+
 
 
 class SecurityConfig(object):

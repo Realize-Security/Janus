@@ -50,8 +50,8 @@ USER janus
 ENTRYPOINT [ "python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
 
 
-# TEST BUILD
-FROM base AS test
+# DEV BUILD
+FROM base AS dev
 
 USER janus
 ENTRYPOINT [ "python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]

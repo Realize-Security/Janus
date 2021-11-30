@@ -1,15 +1,32 @@
-<form method='POST'>
-    {{ form.hidden_tag() }}
-    <br>
-    {{ form.username.label }} {{ form.username }}
-    <br>
-    {{ form.email.label }} {{  form.email }}
-    <br>
-    {{ form.password_1.label }} {{ form.password_1 }}
-    <br>
-    {{ form.password_2.label }} {{ form.password_2 }}
-    <br>
-    {{ form.reg_key.label }} {{ form.reg_key }}
-    <br>
-    {{ form.submit() }}
-</form>
+{% extends "base.html" %} 
+
+
+{% block content %}
+
+    <form method='POST'>
+        {{ form.hidden_tag() }}
+        <br>
+        <div class="mb-3"> 
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control", placeholder="Neo") }}
+        </div>
+        <div class="mb-3">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", placeholder="email@domain.com") }}
+        </div>
+        <div class="mb-3">
+            {{ form.password_1.label(class="form-label") }}
+            {{ form.password_1(class="form-control") }}
+        </div>
+            {{ form.password_2.label(class="form-label") }}
+            {{ form.password_2(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.reg_key.label(class="form-label") }}
+            {{ form.reg_key(class="form-control") }}
+        </div>
+        {{ form.submit() }}
+    </form>
+
+{% endblock  %}
+

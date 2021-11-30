@@ -22,9 +22,13 @@ logpath = os.path.join(LogConf.LOGPATH, LogConf.LOGFILE )
 handler = logging.FileHandler(logpath)
 logger.addHandler(handler)
 
+Bootstrap(app)
+app.config['BOOTSTRAP_SERVE_LOCAL'] = True
+
 
 db = SQLAlchemy(app)
 db.init_app(app)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -33,20 +37,22 @@ from app.routes.core import core
 from app.routes.auth import auth
 
 
-@app.after_request
-def after_request(response):
-    timestamp = strftime('[%Y-%b-%d %H:%M]')
-    logger.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
-    return response
+if AppConfig.LOG_ENABLED:
+    @app.after_request
+    def after_request(response):
+        timestamp = strftime('[%Y-%b-%d %H:%M]')
+        logger.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+        return response
 
 
-@app.errorhandler(Exception)
-def exceptions(e):
-    tb = traceback.format_exc()
-    timestamp = strftime('[%Y-%b-%d %H:%M]')
-    logger.error('%s %s %s %s %s 5xx INTERNAL SERVER ERROR\n%s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, tb)
-    return "True"
+    @app.errorhandler(Exception)
+    def exceptions(e):
+        tb = traceback.format_exc()
+        timestamp = strftime('[%Y-%b-%d %H:%M]')
+        logger.error('%s %s %s %s %s 5xx INTERNAL SERVER ERROR\n%s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, tb)
+        return "Error was logged"
 
 
 app.register_blueprint(core)
 app.register_blueprint(auth)
+

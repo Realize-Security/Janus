@@ -10,7 +10,7 @@ def load_user(userid):
 
 class SystemUser(db.Model, UserMixin):
     reg_key = db.relationship('RegKey', backref='RegKey', lazy='dynamic', uselist=False)
-    reg_key_id = db.Column(db.Integer, db.ForeignKey('reg_key.id'), nullable=True)
+    reg_key_id = db.Column(db.Integer, db.ForeignKey('reg_keys.id'), nullable=True)
 
     __tablename__ = 'system_users'
 
