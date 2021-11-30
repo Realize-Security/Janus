@@ -31,7 +31,7 @@ services:
       - "5000:5000"
     restart: always
     volumes:
-      - ./static_data:/vol/static
+      - static_data:/vol/static
     env_file:
       - ./.db-variables-dev.env
       - ./.web-variables-dev.env

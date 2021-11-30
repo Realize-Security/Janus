@@ -1,6 +1,6 @@
 #!/bin/sh
 
-function reset_docker() {
+function prune_docker() {
     echo ">> Removing all stopped containers"
     docker rm $(docker ps --filter status=exited -q)
     echo
@@ -17,6 +17,13 @@ function reset_docker() {
     docker container prune -f
     echo
 
+}
+
+function build() {
+    sudo docker-compose -f docker-compose-$ENVIRONMENT.yml up --build
+}
+
+function restart() {
     echo "Reset Docker socket"
     sudo systemctl restart docker.socket
     echo
@@ -26,14 +33,15 @@ function reset_docker() {
     echo
 }
 
-function build() {
-    sudo docker-compose -f docker-compose-$ENVIRONMENT.yml up --build
-}
 
-
-if [[ $2 ]] && [[ $2 = "--reset" ]]
+if [[ $2 ]] && [[ $2 = "--prune" ]]
 then
-    reset_docker
+    prune_docker
+fi
+
+if [[ $3 ]] && [[ $3 = "--reset" ]]
+then
+    restart
 fi
 
 
