@@ -39,6 +39,7 @@ then
     prune_docker
 fi
 
+
 if [[ $3 ]] && [[ $3 = "--reset" ]]
 then
     restart
