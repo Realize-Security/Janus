@@ -7,7 +7,7 @@ class RegKey(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), index=True, unique=True, nullable=False)
-    reg_key = db.Column(db.String(70), nullable=False)
+    reg_key = db.Column(db.String(64), nullable=False)
     
 
     def __init__(self, email, reg_key):

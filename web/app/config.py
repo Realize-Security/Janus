@@ -38,6 +38,7 @@ class FormsConfig(object):
     PASS_2 = "password_2"
     REG_KEY = "reg_key"
     PASS_SUBMIT = "password"
+    SUBMIT_ERROR = "There was an issue with your request. Please contact your administrator"
 
 
 class LogConf(object):

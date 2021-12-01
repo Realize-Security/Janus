@@ -7,3 +7,4 @@ if [[ -z $DEBUG_ENV ]]; then
 else
   python -m debugpy --listen 0.0.0.0:5678 --wait-for-client --multiprocess -m $CMD
 fi
+# 
