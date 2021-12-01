@@ -25,6 +25,11 @@ db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+if AppConfig.DEBUG:
+    from flask_debugtoolbar import DebugToolbarExtension
+    app.debug = True
+    toolbar = DebugToolbarExtension(app)
+
 from app.routes.core import core
 from app.routes.auth import auth
 
