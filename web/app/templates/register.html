@@ -1,5 +1,10 @@
 {% extends "base.html" %} 
 
+
+{% block content %}
+
+    {% include "flash.html" %}
+
     <form method='POST'>
         {{ form.hidden_tag() }}
         <br>

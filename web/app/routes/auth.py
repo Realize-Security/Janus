@@ -43,6 +43,9 @@ def register():
                 return redirect(url_for('login'))
         except Exception as e:
             print(str(e))
+    
+    if form.errors:
+        flash(FormsConfig.SUBMIT_ERROR)
 
     return render_template("register.html", form=form)
 
