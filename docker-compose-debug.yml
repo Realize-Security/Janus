@@ -53,7 +53,6 @@ services:
       - ./.db-variables-debug.env
 
 volumes:
-  # flask_logging:
   nginx_logging:
   static_data:
   postgres_data:
