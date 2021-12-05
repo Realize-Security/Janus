@@ -23,8 +23,11 @@ class AppConfig(object):
 
 
 class SecurityConfig(object):
-    """Security specific strings and configs"""
+    """Security specific strings and configs
+    Password complexity: 1 upper, 1 lower, 1 int, 1 special character. Minimum length == PASSWORD_MIN_LENGTH
+    """
     PASSWORD_MIN_LENGTH = 10
+    PASSWORD_COMPLEXITY = r"(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-=]).{" + str(PASSWORD_MIN_LENGTH) + ",}" 
     REG_TOKEN_REGEX = r"[a-z0-9]{64,64}"
     USER_IS_ACTIVE = "is_active"
     REGISTRATION_ERROR = 'Please check your details and try again'
