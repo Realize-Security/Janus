@@ -11,11 +11,16 @@ class RegisterForm(FlaskForm):
     REG_ERROR = SecurityConfig.REGISTRATION_ERROR
     PASSWORD_MIN = SecurityConfig.PASSWORD_MIN_LENGTH
     required_message = "This field is required"
-    min_length_message = "Password minimum length: " + str(PASSWORD_MIN)
+    min_length_message = f"Password Requirements: Must be {PASSWORD_MIN} characters in length and contain at least: 1 upper case letter, one lower case letter, a number and a special character."
 
     username = StringField("Username", validators=[DataRequired(message=required_message)])
     email = StringField("Email", validators=[Email(), DataRequired(message=required_message)])
-    password_1 = PasswordField("Password", validators=[Length(min=PASSWORD_MIN), DataRequired(message=min_length_message)])
+    password_1 = PasswordField("Password", validators=[
+        Length(min=PASSWORD_MIN),
+        Regexp(regex=SecurityConfig.PASSWORD_COMPLEXITY),
+        DataRequired(message=min_length_message)
+        ]
+    )
     password_2 = PasswordField("Confirm Password", validators=[EqualTo(fieldname='password_1', message='Passwords must match')])
     reg_key = StringField("Registration Token", validators=[Regexp(regex=SecurityConfig.REG_TOKEN_REGEX)])
     submit = SubmitField("Register")
