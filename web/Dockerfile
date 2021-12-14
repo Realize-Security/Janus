@@ -42,20 +42,20 @@ RUN chmod +x /app/scripts/run.sh
 
 # DEBUG BUILD
 FROM base AS debug
-
 COPY /dev-requirements.txt /dev-requirements.txt
 RUN pip install -r /dev-requirements.txt
 USER janus
-ENTRYPOINT [ "python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "-m", "flask", "run", "--host=0.0.0.0"]
+#ENTRYPOINT [ "python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "-m", "flask", "run", "--host=0.0.0.0"]
+ENTRYPOINT [ "scripts/run.sh" ]
 
 # DEV BUILD
 FROM base AS dev
-
 USER janus
-ENTRYPOINT [ "python", "-m", "flask", "run", "--host=0.0.0.0" ]
+#ENTRYPOINT [ "python", "-m", "flask", "run", "--host=0.0.0.0" ]
+ENTRYPOINT [ "scripts/run.sh" ]
 
 # PROD BUILD
 FROM base AS prod
-
 USER janus
-ENTRYPOINT [ "python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
+#ENTRYPOINT [ "python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "manage:app" ]
+ENTRYPOINT [ "scripts/run.sh" ]
